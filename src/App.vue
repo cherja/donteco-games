@@ -1,6 +1,6 @@
 <template>
   <div id="app" class="wrapper">
-    <modalc-component
+    <modal-component
       v-if="isShow"
       @close="isShow = false"
     />
@@ -75,22 +75,11 @@ export default {
 }
 
 .container {
-  padding: 0 50px 0 320px;
-
-   @include screen-max(1600px) {
-      padding: 0 50px 0 200px;
-    }
-
-   @include screen-max(1400px) {
-      padding: 0 50px 0 100px;
-    }
-
-    @include screen-md {
-     padding: 0 0 0 50px;
-    }
-
-    @include screen-xs {
-    padding: 0px;
+  max-width: 1700px;
+  margin: auto;
+  padding: 0 50px;
+  @include screen-md {
+    padding: 0 20px;
   }
 }
 

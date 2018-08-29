@@ -10,6 +10,6 @@
   background-image: url(../assets/images/background_bomb_riders.jpg);
   background-position: center center;
   background-size: cover;
-  height: 100ch;
+  height: 100vh;
 }
 </style>
