@@ -1,6 +1,6 @@
 <template>
   <div class="laser-box-block">
-    <h1>laserBox</h1>
+    <div class="laser-box"/>
   </div>
 </template>
 
@@ -10,6 +10,13 @@
   background-image: url(../assets/images/background_laser_box.jpg);
   background-position: center center;
   background-size: cover;
-  height: 100ch;
+}
+.laser-box {
+  width: 1110px;
+  height: 900px;
+  background-image: url(../assets/images/laser_box.png);
+  background-position: center center;
+  background-size: contain;
+  background-repeat: no-repeat;
 }
 </style>

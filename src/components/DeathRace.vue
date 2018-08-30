@@ -1,6 +1,7 @@
 <template>
   <div class="death-race-block">
-    <h1>deathRace</h1>
+    <div class="death-race"/>
+    <h1>d</h1>
   </div>
 </template>
 
@@ -10,6 +11,16 @@
   background-image: url(../assets/images/background_death_race.jpg);
   background-position: center center;
   background-size: cover;
-  height: 100vh;
+  h1 {
+    color: #fe0f0f;
+  }
+}
+.death-race {
+  width: 1110px;
+  height: 900px;
+  background-image: url(../assets/images/death_race.png);
+  background-position: center center;
+  background-size: contain;
+  background-repeat: no-repeat;
 }
 </style>
