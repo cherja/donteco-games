@@ -1,12 +1,17 @@
 <template>
   <div id="app" class="wrapper">
+    <modal-games
+      v-if="isShowYouTube"
+      @close="isShowYouTube = false"
+      :ss="ssilka"
+    />
     <modal-component
       v-if="isShow"
       @close="isShow = false"
     />
     <header-component @open="isShow = true"/>
-    <bomb-riders/>
-    <death-race/>
+    <bomb-riders  @emit-media="openYoutube" />
+    <death-race @emit-media="openYoutube"/>
     <laser-box/>
     <form-in-layout/>
     <company-address/>
@@ -16,6 +21,7 @@
 
 <script>
 import ModalComponent from './components/Modal.vue'
+import ModalGames from './components/ModalGames.vue'
 import HeaderComponent from './components/Header.vue'
 import BombRiders from './components/BombRiders.vue'
 import DeathRace from './components/DeathRace.vue'
@@ -27,6 +33,7 @@ import FooterComponent from './components/Footer.vue'
 export default {
   components: {
     ModalComponent,
+    ModalGames,
     HeaderComponent,
     BombRiders,
     DeathRace,
@@ -38,7 +45,15 @@ export default {
   name: 'app',
   data () {
     return {
-      isShow: false
+      isShow: false,
+      isShowYouTube: false,
+      ssilka: ''
+    }
+  },
+  methods: {
+    openYoutube (ss) {
+      this.isShowYouTube = true
+      this.ssilka = ss
     }
   }
 }
@@ -66,6 +81,12 @@ export default {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+}
+button {
+  cursor: pointer;
+}
+input[type=submit] {
+  cursor: pointer;
 }
 
 .wrapper {
@@ -101,6 +122,96 @@ export default {
 
     @include screen-xs {
     padding: 0px;
+  }
+}
+.games-blocks {
+  background-position: center center;
+  background-size: cover;
+  padding: 30px 0;
+  h1 {
+    font-family: "BBB";
+    font-size: 5vw;
+    line-height: 80%;
+    @include screen-md {
+      font-size: 7vw;
+    }
+    @include screen-md {
+      font-size: 10vw;
+    }
+  }
+  p {
+    font-family: "SSP";
+    font-size: 2vw;
+     @include screen-md {
+      font-size: 5vw;
+    }
+  }
+}
+
+.games-img {
+  width: 50vw;
+  height: 45vw;
+  background-position: center center;
+  background-size: contain;
+  background-repeat: no-repeat;
+  @include screen-md {
+    margin: 30px auto;
+    width: 80vw;
+    height: 55vw;
+  }
+  @include screen-xs {
+    width: 90vw;
+    height: 65vw;
+  }
+}
+.shop_btn {
+  margin: .5vw 0;
+  width: 9vw;
+  border: none;
+  background-color: transparent;
+  outline:none;
+  cursor: pointer;
+  @include screen-md {
+    width: 15vw;
+  }
+  @include screen-xs {
+    width: 25vw;
+  }
+}
+
+.shop_btn>img {
+  width: 100%;
+}
+.flex-for-block-games {
+  display: flex;
+  align-items: center;
+  @include screen-md {
+    display: block;
+  }
+}
+.games-text-btn {
+  margin-left: 8%;
+  @include screen-md {
+    margin-left: 0%;
+  }
+}
+.games-text-btn_text {
+  margin-bottom: 2vw;
+  @include screen-md {
+    display: none;
+  }
+}
+.games-text-btn_text-mobile {
+  display: none;
+  @include screen-md {
+    display: block;
+    text-align: center;
+  }
+}
+.games-text-btn_btn {
+  @include screen-md {
+    display: flex;
+    justify-content: space-around;
   }
 }
 </style>
