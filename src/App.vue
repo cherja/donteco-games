@@ -3,16 +3,16 @@
     <modal-games
       v-if="isShowYouTube"
       @close="isShowYouTube = false"
-      :ss="ssilka"
+      :link="linkYoutube"
     />
     <modal-component
       v-if="isShow"
       @close="isShow = false"
     />
     <header-component @open="isShow = true"/>
-    <bomb-riders  @emit-media="openYoutube" />
-    <death-race @emit-media="openYoutube"/>
-    <laser-box/>
+    <bomb-riders  @emit-link="openModalYoutube"/>
+    <death-race @emit-link="openModalYoutube"/>
+    <laser-box @emit-link="openModalYoutube"/>
     <form-in-layout/>
     <company-address/>
     <footer-component/>
@@ -47,13 +47,13 @@ export default {
     return {
       isShow: false,
       isShowYouTube: false,
-      ssilka: ''
+      linkYoutube: ''
     }
   },
   methods: {
-    openYoutube (ss) {
+    openModalYoutube (link) {
+      this.linkYoutube = link
       this.isShowYouTube = true
-      this.ssilka = ss
     }
   }
 }
@@ -149,6 +149,9 @@ input[type=submit] {
 }
 
 .games-img {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   width: 50vw;
   height: 45vw;
   background-position: center center;
@@ -213,5 +216,22 @@ input[type=submit] {
     display: flex;
     justify-content: space-around;
   }
+}
+.play {
+  width: 11vw;
+  height: 11vw;
+  background-position: center center;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-image: url(./assets/images/play.png);
+  transition: all .2s;
+  cursor: pointer;
+  @include screen-md {
+    width: 14vw;
+    height: 14vw;
+  }
+}
+.play:hover {
+  transform: scale(1.1);
 }
 </style>

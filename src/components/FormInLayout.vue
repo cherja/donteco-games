@@ -10,9 +10,9 @@
       <p>Оставьте сообщение и наши специалисты свяжуться с Вами в течении 15 минут.</p>
     </div>
     <div class="form">
-      <input type="text" placeholder="Имя">
-      <input type="tel" placeholder="Телефон">
-      <textarea placeholder="Введите сообщение"></textarea>
+      <input v-model="name" type="text" placeholder="Имя">
+      <input v-model="tel" type="tel" placeholder="Телефон">
+      <textarea v-model=" message" placeholder="Введите сообщение"></textarea>
       <input @click="submitForm" type = "submit" value = "Отправить">
     </div>
     </div>
@@ -27,18 +27,27 @@ export default {
   name: 'app',
   data () {
     return {
-      isShow: false
+      name: '',
+      tel: '',
+      message: ''
     }
   },
   methods: {
     submitForm () {
-      axios.post('http://localhost:8081/send-mail', {
-        name: 'Антон',
-        phone: '38056',
-        text: 'амиго'
+      if (!this.name || !this.tel || !this.message) {
+        alert('Заполните все поля')
+        return
+      }
+      axios.post('mailsender.php', {
+        'Имя': this.name,
+        'Телефон': this.tel,
+        'Сообщение': this.message
       })
-        .then(() => alert('Успех'))
+        .then(() => alert('Благодарим за отправку обращения!'))
         .catch(console.warn)
+      this.name = ''
+      this.tel = ''
+      this.message = ''
     }
   }
 }

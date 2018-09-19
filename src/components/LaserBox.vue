@@ -8,7 +8,9 @@
           <p>Топ-20 головоломок<br><span>Google play</span></p>
         </div>
       </div>
-      <div class="laser-box games-img"/>
+      <div class="laser-box games-img">
+        <div class="play" @click="emitLink"/>
+      </div>
       <div class="games-text-btn">
         <div class="games-text-btn_text">
             <h1>LASER-BOX</h1>
@@ -26,6 +28,16 @@
     </div>
   </div>
 </template>
+
+<script>
+export default {
+  methods: {
+    emitLink () {
+      this.$emit('emit-link', 'https://www.youtube.com/embed/qNIwdQ8kVYo?autoplay=1')
+    }
+  }
+}
+</script>
 
 <style lang="scss">
 @import "../helpers";

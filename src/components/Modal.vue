@@ -2,9 +2,9 @@
   <transition name="modal">
     <div class="modal-mask">
       <div class="modal-container">
-      <input type="text" placeholder="Имя">
-      <input type="tel" placeholder="Телефон">
-      <input type = "submit" value = "Готов">
+      <input v-model="name" type="text" placeholder="Имя">
+      <input v-model="tel" type="tel" placeholder="Телефон">
+      <input @click="submitForm" type = "submit" value = "Готов">
       <button class="modal-container__close" @click="$emit('close')">
         <img src="../assets/images/close.svg">
       </button>
@@ -14,10 +14,31 @@
 </template>
 
 <script>
+import axios from 'axios'
+
 export default {
+  name: 'app',
+  data () {
+    return {
+      name: '',
+      tel: ''
+    }
+  },
   methods: {
-    addMedia () {
-      this.$emit('emit-media', { type: this.type, src: this.src })
+    submitForm () {
+      if (!this.name || !this.tel) {
+        alert('Заполните все поля')
+        return
+      }
+      axios.post('mailsender.php', {
+        'Имя': this.name,
+        'Телефон': this.tel
+      })
+        .then(() => alert('Благодарим за отправку обращения!'))
+        .catch(console.warn)
+      this.name = ''
+      this.tel = ''
+      this.$emit('close')
     }
   }
 }

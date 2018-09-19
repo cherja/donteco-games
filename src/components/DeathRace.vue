@@ -1,12 +1,13 @@
 <template>
   <div class="death-race-block games-blocks">
-    <button @click="addLink">Открыть</button>
     <div class="container flex-for-block-games">
       <div class="games-text-btn_text-mobile">
         <h1>DEATH RACE</h1>
         <p>VR игра</p>
       </div>
-      <div class="death-race games-img"/>
+      <div class="death-race games-img">
+        <div class="play" @click="emitLink"/>
+      </div>
       <div class="games-text-btn">
         <div class="games-text-btn_text">
           <h1>DEATH RACE</h1>
@@ -25,8 +26,8 @@
 <script>
 export default {
   methods: {
-    addLink () {
-      this.$emit('emit-media', 'https://www.youtube.com/embed/TnDGmCRCf7E')
+    emitLink () {
+      this.$emit('emit-link', 'https://www.youtube.com/embed/TnDGmCRCf7E?autoplay=1')
     }
   }
 }

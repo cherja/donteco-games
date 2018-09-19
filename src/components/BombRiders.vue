@@ -1,12 +1,13 @@
 <template>
   <div class="bomb-riders-block games-blocks">
-    <button @click="addLink">Открыть</button>
     <div class="container flex-for-block-games">
       <div class="games-text-btn_text-mobile">
         <h1>BOMB RIDERS</h1>
         <p>мобильная игра</p>
       </div>
-      <div class="bomb-riders games-img"/>
+      <div class="bomb-riders games-img">
+        <div class="play" @click="emitLink"/>
+      </div>
       <div class="games-text-btn">
         <div class="games-text-btn_text">
           <h1>BOMB RIDERS</h1>
@@ -25,8 +26,8 @@
 <script>
 export default {
   methods: {
-    addLink () {
-      this.$emit('emit-media', 'https://www.youtube.com/embed/8uN2bGC76HU')
+    emitLink () {
+      this.$emit('emit-link', 'https://www.youtube.com/embed/8uN2bGC76HU?autoplay=1')
     }
   }
 }
